@@ -1,11 +1,12 @@
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, remove } from "firebase/database";
 import { app } from "../../firebase";
 import { useEffect, useState } from "react";
 
 function StudentList() {
   const [StudentData, setStudentData] = useState(null);
+  const db = getDatabase(app);
+  
   useEffect(() => {
-    const db = getDatabase(app);
     const studentRef = ref(db, "student");
 
     onValue(studentRef, (snapshot) => {
@@ -13,6 +14,10 @@ function StudentList() {
       setStudentData(data);
     });
   }, []);
+  const handleDelete = (key)=>{
+    const studentRef = ref(db,'student/'+ key)
+    remove(studentRef)
+  }
   return (
     <>
     <div className="p-10">
@@ -25,6 +30,7 @@ function StudentList() {
                 <h1>ID : {key}</h1>
                 <h1> Name: {value.Name}</h1>
                 <h1> Number: {value.Number}</h1>
+                <button onClick={()=>{handleDelete(key)}} className="bg-black rounded-md px-3 py-0.5">Delete</button>
               </div>
             ))}
           </div>
