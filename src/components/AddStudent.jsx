@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
-import { set, ref, getDatabase } from "firebase/database";
-import { app } from "../../firebase";
+import { set, ref } from "firebase/database";
+import {  db } from "../../firebase";
 
 function AddStudent() {
   const [Name, setName] = useState("");
@@ -11,14 +11,10 @@ function AddStudent() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const db = getDatabase(app);
-
     set(ref(db, "student/" + ID), {
       Number: Number,
       Name: Name,
     })
-
-    // navigate('/studentList')
     .then( () =>  navigate('/studentList'))
     .catch((error) => {
       console.error('Form submission failed:', error);

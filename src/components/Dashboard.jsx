@@ -1,4 +1,5 @@
 import {Link, Outlet} from "react-router-dom";
+import SignIn from "./SignIn";
 
 function Dashboard() {
   return (
@@ -12,6 +13,7 @@ function Dashboard() {
           <Outlet />
         </div>
       </div>
+      <SignIn/>
     </>
   );
 }

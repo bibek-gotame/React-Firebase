@@ -1,10 +1,9 @@
-import { getDatabase, ref, onValue, remove } from "firebase/database";
-import { app } from "../../firebase";
+import {ref, onValue, remove } from "firebase/database";
+import {  db } from "../../firebase";
 import { useEffect, useState } from "react";
 
 function StudentList() {
   const [StudentData, setStudentData] = useState(null);
-  const db = getDatabase(app);
   
   useEffect(() => {
     const studentRef = ref(db, "student");
@@ -14,6 +13,7 @@ function StudentList() {
       setStudentData(data);
     });
   }, []);
+  
   const handleDelete = (key)=>{
     const studentRef = ref(db,'student/'+ key)
     remove(studentRef)
