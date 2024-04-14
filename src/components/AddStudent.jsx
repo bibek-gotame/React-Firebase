@@ -15,7 +15,7 @@ function AddStudent() {
       Number: Number,
       Name: Name,
     })
-    .then( () =>  navigate('/studentList'))
+    .then( () =>  navigate('/dashBoard/studentList'))
     .catch((error) => {
       console.error('Form submission failed:', error);
   });
