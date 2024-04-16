@@ -20,8 +20,8 @@ function SignIn() {
         email.current.value,
         password.current.value
       )
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
+          // const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -34,8 +34,8 @@ function SignIn() {
         email.current.value,
         password.current.value
       )
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
+          // const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -50,7 +50,7 @@ function SignIn() {
       <div className="bg-slate-500 h-screen">
         <Header />
 
-        <div className=" text-white  bg-black w-[22rem] px-5 py-10 mx-auto mt-36  rounded-lg ">
+        <div className=" text-white  bg-black w-full max-w-[22rem] px-5 py-10 mx-auto mt-[9%]  rounded-lg ">
           <h1 className=" font-bold text-2xl mb-4">
             {isSignIn ? " Sign In " : " Sign Up"}
           </h1>

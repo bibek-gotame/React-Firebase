@@ -1,25 +1,32 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { set, ref } from "firebase/database";
-import {  db } from "../../firebase";
+import { db } from "../../firebase";
 
 function AddStudent() {
   const [Name, setName] = useState("");
-  const [ID, setID] = useState();
-  const [Number, setNumber] = useState();
+  const [ID, setID] = useState("");
+  const [Number, setNumber] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     set(ref(db, "student/" + ID), {
       Number: Number,
       Name: Name,
     })
-    .then( () =>  navigate('/dashBoard/studentList'))
-    .catch((error) => {
-      console.error('Form submission failed:', error);
-  });
-}
+      .then(
+        () => 
+        // {}
+         navigate('/dashBoard/studentList')
+      )
+      .catch((error) => {
+        console.error("Form submission failed:", error);
+      });
+    setName("");
+    setID("");
+    setNumber("");
+  };
   return (
     <div>
       <form
@@ -28,21 +35,21 @@ function AddStudent() {
       >
         <input
           className="py-1.5 px-4 text-black  rounded-md"
-          // value={ID}
+          value={ID}
           onChange={(e) => setID(e.target.value)}
           type="text"
           placeholder="ID"
         />
         <input
           className="py-1.5 px-4 text-black  rounded-md"
-          // value={Name}
+          value={Name}
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Name"
         />
         <input
           className="py-1.5 px-4 text-black  rounded-md"
-          // value={Number}
+          value={Number}
           onChange={(e) => setNumber(e.target.value)}
           type="Number"
           placeholder="Number"

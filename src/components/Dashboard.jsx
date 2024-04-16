@@ -16,7 +16,6 @@ function Dashboard() {
         </div>
         <div className="w-3/4 bg-slate-600"><Outlet /></div>
       </div>
-      {/* <SignIn/> */}
     </>
   );
 }

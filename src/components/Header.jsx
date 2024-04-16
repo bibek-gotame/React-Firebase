@@ -13,14 +13,10 @@ function Header() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // console.log(user);
-        const { uid, email, displayName, photoURL } = user;
-        dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
+        const { uid, email, displayName} = user;
+        dispatch(addUser({uid:uid,email:email,displayName:displayName}))
         navigate('/dashBoard')
-
-        // ...
       } else {
-        // User is signed out
         dispatch(removeUser())
         navigate('/')
         // ...
@@ -32,16 +28,11 @@ function Header() {
   const SignOut = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
         console.log("signout successully");
         // navigate('/')
-
-
       })
       .catch((error) => {
         console.log(error);
-
-        // An error happened.
       });
   };
 
